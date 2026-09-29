@@ -1,0 +1,38 @@
+name: Protocol Proposal
+description: Propose a change to the ETTP protocol
+title: "[Protocol]: "
+labels:
+  - protocol
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the protocol problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Protocol Change
+      description: Describe the proposed protocol change precisely.
+    validations:
+      required: true
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility
+      description: Explain backward and forward compatibility implications.
+    validations:
+      required: true
+
+  - type: textarea
+    id: security
+    attributes:
+      label: Security Impact
+      description: Explain security implications.
+    validations:
+      required: true

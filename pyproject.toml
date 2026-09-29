@@ -1,0 +1,120 @@
+[project]
+name = "ettp"
+version = "0.1.0.dev0"
+description = "Entity Trust Transfer Protocol"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "OpenTruxt" }
+]
+keywords = [
+    "ai",
+    "agents",
+    "trust",
+    "security",
+    "safety",
+    "protocol",
+    "autonomous-systems"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries"
+]
+
+dependencies = [
+    "cryptography>=44",
+    "jsonschema>=4.23",
+    "pydantic>=2.10",
+    "typer>=0.15"
+]
+
+[project.urls]
+Homepage = "https://github.com/OpenTruxt/ettp"
+Repository = "https://github.com/OpenTruxt/ettp"
+Issues = "https://github.com/OpenTruxt/ettp/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.120",
+    "mypy>=1.14",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.25",
+    "ruff>=0.9"
+]
+
+docs = [
+    "mkdocs>=1.6",
+    "mkdocs-material>=9.5"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ettp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "I",
+    "B",
+    "UP",
+    "SIM",
+    "C4",
+    "RUF"
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true
+warn_unreachable = true
+disallow_any_generics = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+]
+pythonpath = [
+    "src"
+]
+addopts = [
+    "-ra",
+    "--strict-config",
+    "--strict-markers"
+]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+branch = true
+source = [
+    "ettp"
+]
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError"
+]
