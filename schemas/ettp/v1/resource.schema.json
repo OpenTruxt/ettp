@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/resource.schema.json",
+  "title": "ETTP Resource",
+  "description": "A description of a resource that an ETTP action may target.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "An extensible resource type, such as `database`, `file`, `API`, or `robot_actuator`."
+    },
+    "id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "An opaque, non-secret resource identifier."
+    },
+    "name": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "A human-readable resource name."
+    },
+    "metadata": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
+      "description": "Descriptive resource metadata; it does not change protocol semantics.",
+      "additionalProperties": true
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "name",
+    "metadata"
+  ],
+  "additionalProperties": false
+}

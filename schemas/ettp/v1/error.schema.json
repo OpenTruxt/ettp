@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/error.schema.json",
+  "title": "ETTP Error",
+  "description": "A machine-readable protocol error without sensitive implementation details.",
+  "type": "object",
+  "properties": {
+    "error_code": {
+      "type": "string",
+      "enum": [
+        "INVALID_REQUEST",
+        "INVALID_SCHEMA",
+        "INVALID_SIGNATURE",
+        "UNKNOWN_ENTITY",
+        "UNKNOWN_CREDENTIAL",
+        "EXPIRED_CREDENTIAL",
+        "REVOKED_CREDENTIAL",
+        "UNAUTHORIZED",
+        "DELEGATION_INVALID",
+        "POLICY_DENIED",
+        "ENTITY_SUSPENDED",
+        "ENTITY_TERMINATED",
+        "REPLAY_DETECTED",
+        "UNSUPPORTED_VERSION",
+        "UNSUPPORTED_PROFILE"
+      ]
+    },
+    "message": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "A safe, human-readable summary that does not expose sensitive implementation details."
+    },
+    "protocol_version": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/ProtocolVersion"
+    },
+    "request_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "details": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
+      "description": "Optional non-sensitive structured details about the protocol error."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "error_code",
+    "message",
+    "protocol_version"
+  ],
+  "additionalProperties": false
+}

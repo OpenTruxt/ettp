@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/evidence.schema.json",
+  "title": "ETTP Evidence",
+  "description": "A record of an action outcome and the protocol objects associated with it.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "event": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "A concise description of what happened."
+    },
+    "timestamp": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Timestamp",
+      "description": "When the recorded event occurred."
+    },
+    "entity_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference"
+    },
+    "action_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "policy_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "Optional identifier of the policy associated with the event."
+    },
+    "decision_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "executed": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
+      "description": "Optional structured description of what was executed; absent when no execution took place."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "id",
+    "event",
+    "timestamp",
+    "entity_id",
+    "action_id",
+    "decision_id"
+  ],
+  "additionalProperties": false
+}

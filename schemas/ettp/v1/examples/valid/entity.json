@@ -1,0 +1,20 @@
+{
+  "id": "ent_01J9M7K2Q4R8V6W3X5Y0Z1A2BC",
+  "type": "AI_AGENT",
+  "name": "customer-support-agent",
+  "version": "2.4.1",
+  "issuer": "organization.example",
+  "owner": "support-platform",
+  "capabilities": [
+    "customer.read",
+    "refund.request",
+    "email.send"
+  ],
+  "metadata": {
+    "deployment": "support-eu"
+  },
+  "protocol_version": "0.1",
+  "extensions": {
+    "team": "customer-operations"
+  }
+}

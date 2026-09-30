@@ -1,0 +1,9 @@
+{
+  "error_code": "POLICY_DENIED",
+  "message": "The requested action was denied by policy.",
+  "protocol_version": "0.1",
+  "request_id": "req_123",
+  "details": {
+    "action_id": "act_123"
+  }
+}

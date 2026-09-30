@@ -1,0 +1,10 @@
+{
+  "type": "AI_AGENT",
+  "name": "customer-support-agent",
+  "version": "2.4.1",
+  "capabilities": [
+    "customer.read"
+  ],
+  "metadata": {},
+  "protocol_version": "0.1"
+}

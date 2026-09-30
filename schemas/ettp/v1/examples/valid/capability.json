@@ -1,0 +1,6 @@
+{
+  "name": "customer.read",
+  "extensions": {
+    "source": "support-agent-registration"
+  }
+}

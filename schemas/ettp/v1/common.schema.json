@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json",
+  "title": "ETTP Common Schema Definitions",
+  "description": "Reusable primitives shared by ETTP v1 protocol object schemas; this is not a protocol object schema.",
+  "type": "object",
+  "$defs": {
+    "NonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "Identifier": {
+      "$ref": "#/$defs/NonEmptyString",
+      "description": "An opaque, non-empty, non-secret identifier."
+    },
+    "ProtocolVersion": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "EntityReference": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "ResourceReference": {
+      "$ref": "#/$defs/Identifier"
+    },
+    "Metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

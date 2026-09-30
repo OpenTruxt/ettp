@@ -1,0 +1,9 @@
+{
+  "id": "resource:customer-db",
+  "type": "database",
+  "name": "customer-database",
+  "metadata": {
+    "environment": "production",
+    "region": "eu-west"
+  }
+}

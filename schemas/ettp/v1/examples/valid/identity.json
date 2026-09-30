@@ -1,0 +1,21 @@
+{
+  "id": "ent_01J9M7K2Q4R8V6W3X5Y0Z1A2BC",
+  "version": "1.2.0",
+  "entity_type": "AI_AGENT",
+  "owner": "support-platform",
+  "issuer": "organization.example",
+  "capabilities": [
+    "customer.read",
+    "refund.request"
+  ],
+  "provenance": {
+    "source": "local-registration",
+    "registered_by": "operator_42"
+  },
+  "created_at": "2026-09-29T16:00:00Z",
+  "expires_at": "2027-09-29T16:00:00Z",
+  "status": "ACTIVE",
+  "extensions": {
+    "deployment_region": "eu-west"
+  }
+}

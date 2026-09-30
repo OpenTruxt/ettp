@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/policy.schema.json",
+  "title": "ETTP Policy",
+  "description": "A versioned declarative rule describing an effect and deterministic conditions; this schema does not evaluate policy.",
+  "type": "object",
+  "$defs": {
+    "Condition": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+          "description": "The data field to which the condition applies."
+        },
+        "operator": {
+          "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+          "description": "An extensible deterministic comparison operator identifier."
+        },
+        "value": {
+          "description": "A JSON value compared by the condition. Its operator-specific interpretation belongs to a later policy-engine sprint."
+        }
+      },
+      "required": [
+        "field",
+        "operator",
+        "value"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "name": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+    },
+    "version": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+    },
+    "effect": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "BLOCK",
+        "REQUIRE_APPROVAL",
+        "REDACT"
+      ],
+      "description": "The declarative outcome associated with this policy when its conditions match."
+    },
+    "conditions": {
+      "type": "array",
+      "description": "Deterministic condition records. Interpretation and evaluation are outside Sprint 1.",
+      "items": {
+        "$ref": "#/$defs/Condition"
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "effect",
+    "conditions"
+  ],
+  "additionalProperties": false
+}

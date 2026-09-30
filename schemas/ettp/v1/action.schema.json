@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/action.schema.json",
+  "title": "ETTP Action",
+  "description": "A request by an entity to perform an operation against a target with arguments and optional context.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "entity_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference"
+    },
+    "type": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "An extensible action category, such as `TOOL_CALL`."
+    },
+    "target": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "The target resource, tool, or operation name for the action."
+    },
+    "operation": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "The operation the entity requests to perform."
+    },
+    "arguments": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
+      "description": "Operation parameters supplied with the request."
+    },
+    "context": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/trust-context.schema.json",
+      "description": "Optional evaluation context for the requested action."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "id",
+    "entity_id",
+    "type",
+    "target",
+    "operation",
+    "arguments"
+  ],
+  "additionalProperties": false
+}

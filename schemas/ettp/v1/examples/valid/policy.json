@@ -1,0 +1,13 @@
+{
+  "id": "pol_refund_limit",
+  "name": "Refunds above threshold require approval",
+  "version": "1.0.0",
+  "effect": "REQUIRE_APPROVAL",
+  "conditions": [
+    {
+      "field": "arguments.amount",
+      "operator": "greater_than",
+      "value": 100
+    }
+  ]
+}

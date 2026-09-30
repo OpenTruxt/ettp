@@ -1,0 +1,9 @@
+{
+  "id": "act_123",
+  "type": "TOOL_CALL",
+  "target": "refund_customer",
+  "operation": "refund",
+  "arguments": {
+    "amount": 500
+  }
+}

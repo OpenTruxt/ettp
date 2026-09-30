@@ -1,0 +1,7 @@
+{
+  "id": "dec_123",
+  "action_id": "act_123",
+  "effect": "REQUIRE_APPROVAL",
+  "reason": "Refund exceeds the configured threshold.",
+  "policy_id": "pol_refund_limit"
+}

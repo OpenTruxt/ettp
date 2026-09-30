@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/decision.schema.json",
+  "title": "ETTP Decision",
+  "description": "A deterministic outcome associated with evaluating an ETTP action.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "action_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "effect": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "BLOCK",
+        "REQUIRE_APPROVAL",
+        "REDACT"
+      ],
+      "description": "The protocol-defined decision outcome."
+    },
+    "reason": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "Optional human-readable explanation for the outcome."
+    },
+    "policy_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "Optional identifier of the policy associated with the outcome."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "id",
+    "action_id",
+    "effect"
+  ],
+  "additionalProperties": false
+}

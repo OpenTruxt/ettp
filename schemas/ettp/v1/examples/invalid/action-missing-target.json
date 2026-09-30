@@ -1,0 +1,9 @@
+{
+  "id": "act_123",
+  "entity_id": "ent_01J9M7K2Q4R8V6W3X5Y0Z1A2BC",
+  "type": "TOOL_CALL",
+  "operation": "refund",
+  "arguments": {
+    "amount": 500
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/entity.schema.json",
+  "title": "ETTP Entity",
+  "description": "An autonomous or human entity participating in the Entity Trust Transfer Protocol.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "A globally unique, stable, non-secret entity identifier."
+    },
+    "type": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "An extensible entity type identifier; implementations must not assume the set is closed."
+    },
+    "name": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "A human-readable name for the entity."
+    },
+    "version": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "The entity or entity-description version."
+    },
+    "issuer": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "Optional identifier or label for the authority that issued the entity description."
+    },
+    "owner": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "Optional identifier or label for the entity's owner."
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "Capabilities the entity can attempt; listing a capability does not authorize an action.",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+      },
+      "uniqueItems": true
+    },
+    "metadata": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
+      "description": "Descriptive entity metadata. It does not grant authority or alter protocol semantics.",
+      "additionalProperties": true
+    },
+    "protocol_version": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/ProtocolVersion",
+      "description": "The ETTP protocol version used by this entity representation."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "name",
+    "version",
+    "capabilities",
+    "metadata",
+    "protocol_version"
+  ],
+  "additionalProperties": false
+}

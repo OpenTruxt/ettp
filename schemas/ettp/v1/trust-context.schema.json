@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/trust-context.schema.json",
+  "title": "ETTP Trust Context",
+  "description": "A bounded set of contextual attributes relevant to an ETTP evaluation.",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference",
+      "description": "Optional entity identifier relevant to this context."
+    },
+    "capability": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "Optional capability name relevant to this context."
+    },
+    "environment": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
+      "description": "Optional descriptive AI runtime or deployment environment attributes."
+    },
+    "time": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Timestamp",
+      "description": "Optional timestamp associated with this context."
+    },
+    "operator": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference",
+      "description": "Optional identifier of a human or system operator relevant to the context."
+    },
+    "resource": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/ResourceReference",
+      "description": "Optional resource identifier relevant to the context."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined context attributes. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [],
+  "minProperties": 1,
+  "additionalProperties": false
+}

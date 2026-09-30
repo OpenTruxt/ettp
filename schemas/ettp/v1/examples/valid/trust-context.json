@@ -1,0 +1,11 @@
+{
+  "identity": "ent_01J9M7K2Q4R8V6W3X5Y0Z1A2BC",
+  "capability": "refund.request",
+  "environment": {
+    "runtime": "customer-support-agent",
+    "region": "eu-west"
+  },
+  "time": "2026-09-29T16:30:00Z",
+  "operator": "operator_42",
+  "resource": "resource:customer-account"
+}

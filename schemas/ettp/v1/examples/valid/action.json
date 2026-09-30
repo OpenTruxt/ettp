@@ -1,0 +1,16 @@
+{
+  "id": "act_123",
+  "entity_id": "ent_01J9M7K2Q4R8V6W3X5Y0Z1A2BC",
+  "type": "TOOL_CALL",
+  "target": "refund_customer",
+  "operation": "refund",
+  "arguments": {
+    "amount": 500,
+    "customer_id": "cust_123"
+  },
+  "context": {
+    "identity": "ent_01J9M7K2Q4R8V6W3X5Y0Z1A2BC",
+    "capability": "refund.request",
+    "time": "2026-09-29T16:30:00Z"
+  }
+}

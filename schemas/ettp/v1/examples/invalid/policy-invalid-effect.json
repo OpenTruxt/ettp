@@ -1,0 +1,6 @@
+{
+  "id": "pol_refund_limit",
+  "version": "1.0.0",
+  "effect": "ALLOW_WITHOUT_CHECKS",
+  "conditions": []
+}

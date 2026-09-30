@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/identity.schema.json",
+  "title": "ETTP Identity",
+  "description": "A stable, technology-independent identity record for an ETTP entity.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "A globally unique, stable, non-secret identifier that does not encode personal or vendor-specific data."
+    },
+    "version": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "The version of this identity record."
+    },
+    "entity_type": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "An extensible entity type identifier; implementations must not assume the set is closed."
+    },
+    "owner": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "Optional identifier or label for the entity's owner."
+    },
+    "issuer": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
+      "description": "Optional identifier or label for the authority that issued this identity record."
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "Capabilities the entity can attempt; this field does not grant authorization.",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+      },
+      "uniqueItems": true
+    },
+    "provenance": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
+      "description": "Optional provenance metadata. Its contents are descriptive and do not establish trust by themselves.",
+      "additionalProperties": true
+    },
+    "created_at": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Timestamp",
+      "description": "The timestamp at which this identity record was created."
+    },
+    "expires_at": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Timestamp",
+      "description": "Optional expiration timestamp for this identity record."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "SUSPENDED",
+        "REVOKED",
+        "EXPIRED"
+      ],
+      "description": "The lifecycle status of the identity."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "entity_type",
+    "capabilities",
+    "created_at",
+    "status"
+  ],
+  "additionalProperties": false
+}

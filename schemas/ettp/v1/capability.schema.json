@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/capability.schema.json",
+  "title": "ETTP Capability",
+  "description": "A named capability an entity can potentially attempt; possession does not grant current authorization.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
+      "description": "A capability name, such as `customer.read`."
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false
+}
