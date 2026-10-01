@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import ValidationError
 
+from ettp.identity import Identity
+from ettp.protocol import EntityStatus
 from schema_support import make_validator
 
 SCHEMA_ROOT = Path("schemas/ettp/v1")
@@ -52,3 +55,18 @@ def test_identity_with_undefined_status_fails() -> None:
 
     with pytest.raises(ValidationError):
         validator.validate(instance)
+
+
+@pytest.mark.parametrize("status", [EntityStatus.PROPOSED, EntityStatus.TERMINATED])
+def test_python_identity_eid_and_lifecycle_state_match_schema(status: EntityStatus) -> None:
+    identity = Identity(
+        id="identity-1",
+        eid="eid:autonomous:1",
+        version="1",
+        entity_type="ROBOT",
+        capabilities=[],
+        created_at=datetime(2026, 1, 1, tzinfo=UTC),
+        status=status,
+    )
+
+    make_validator(load_json(SCHEMA_PATH)).validate(identity.model_dump(mode="json"))

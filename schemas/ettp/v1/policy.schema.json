@@ -18,12 +18,38 @@
         },
         "value": {
           "description": "A JSON value compared by the condition. Its operator-specific interpretation belongs to a later policy-engine sprint."
+        },
+        "all": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Condition"
+          }
+        },
+        "any": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Condition"
+          }
+        },
+        "not": {
+          "$ref": "#/$defs/Condition"
         }
       },
-      "required": [
-        "field",
-        "operator",
-        "value"
+      "anyOf": [
+        {
+          "required": ["field", "operator", "value"]
+        },
+        {
+          "required": ["all"]
+        },
+        {
+          "required": ["any"]
+        },
+        {
+          "required": ["not"]
+        }
       ],
       "additionalProperties": false
     }
@@ -47,6 +73,10 @@
         "REDACT"
       ],
       "description": "The declarative outcome associated with this policy when its conditions match."
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Optional deterministic precedence priority; higher values win before effect severity."
     },
     "conditions": {
       "type": "array",

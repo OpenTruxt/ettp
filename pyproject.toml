@@ -101,7 +101,9 @@ testpaths = [
     "tests"
 ]
 pythonpath = [
-    "src"
+    "src",
+    "tests/schema",
+    "benchmarks"
 ]
 addopts = [
     "-ra",

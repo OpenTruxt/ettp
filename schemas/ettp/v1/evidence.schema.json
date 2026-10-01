@@ -29,9 +29,158 @@
     "decision_id": {
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
     },
+    "protocol_version": {
+      "const": "0.1"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "POLICY_DECISION",
+        "ACTION_EXECUTED",
+        "ACTION_BLOCKED",
+        "REDACTION_APPLIED",
+        "ENFORCEMENT_FAILURE",
+        "AUTHORIZATION_FAILURE",
+        "POLICY_EVALUATION_FAILURE",
+        "SUSPICIOUS_ACTIVITY",
+        "QUARANTINE",
+        "ISOLATE",
+        "ESCALATE",
+        "CHALLENGE",
+        "REAUTHENTICATE",
+        "DENY_AUTHORITY",
+        "AUTHORITY_GRANTED",
+        "AUTHORITY_WITHDRAWN",
+        "DELEGATION_CREATED",
+        "DELEGATION_ACCEPTED",
+        "DELEGATION_ATTENUATED",
+        "DELEGATION_RENEWED",
+        "DELEGATION_EXPIRED",
+        "DELEGATION_REVOKED",
+        "DELEGATION_CHAIN_INVALIDATED",
+        "INVALIDATE_AUTHORITY",
+        "INVALIDATE_DELEGATION",
+        "INVALIDATE_CREDENTIAL",
+        "INVALIDATE_CAPABILITY",
+        "DELEGATION_DEPTH_VIOLATION",
+        "UNAUTHORIZED_DELEGATION_ATTEMPT",
+        "AUTHORITY_ESCALATION_ATTEMPT",
+        "INDEPENDENT_AUTHORITY_RESOLVED",
+        "CAPABILITY_GRANTED",
+        "CAPABILITY_REVOKED",
+        "CREDENTIAL_ISSUED",
+        "CREDENTIAL_EXPIRED",
+        "CREDENTIAL_REVOKED",
+        "KEY_REVOKED",
+        "ENTITY_SUSPENDED",
+        "ENTITY_ACTIVATED",
+        "ENTITY_RESUMED",
+        "ENTITY_REVOKED",
+        "ENTITY_EXPIRED",
+        "ENTITY_TERMINATED",
+        "ENTITY_LIFECYCLE_TRANSITION",
+        "LIFECYCLE_TRANSITION_NOOP",
+        "AUTHENTICATION",
+        "AUTHORIZATION",
+        "IDENTITY_VERIFICATION",
+        "CREDENTIAL_VERIFICATION",
+        "ATTESTATION",
+        "TRUST_EVALUATION",
+        "POLICY_CONFLICT",
+        "POLICY_OVERRIDE",
+        "APPROVAL_REQUESTED",
+        "APPROVAL_GRANTED",
+        "APPROVAL_DENIED",
+        "APPROVAL_EXPIRED",
+        "SECURITY_VIOLATION",
+        "POLICY_BYPASS_ATTEMPT",
+        "PRIVILEGE_ESCALATION_ATTEMPT",
+        "REPLAY_DETECTED",
+        "INVALID_SIGNATURE",
+        "INVALID_CREDENTIAL",
+        "EXPIRED_CREDENTIAL",
+        "REVOKED_CREDENTIAL",
+        "TERMINATED_ENTITY_ACTIVITY",
+        "INTEGRITY_FAILURE",
+        "EVIDENCE_VERIFICATION_FAILURE"
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional governance decision effect, such as ALLOW or BLOCK."
+    },
     "executed": {
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Metadata",
       "description": "Optional structured description of what was executed; absent when no execution took place."
+    },
+    "request_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "actor_entity_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference"
+    },
+    "authority_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "delegation_chain": {
+      "type": "array",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+      }
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "enforcement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+      }
+    },
+    "affected_entity_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference"
+      }
+    },
+    "invalidated_authority_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+      }
+    },
+    "from_lifecycle_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "to_lifecycle_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "invalidation_scope": {
+      "type": "string",
+      "enum": [
+        "SELF",
+        "DESCENDANTS",
+        "DELEGATION_CHAIN",
+        "CREDENTIAL_DEPENDENTS",
+        "CAPABILITY_DEPENDENTS",
+        "ORGANIZATIONAL_SCOPE"
+      ]
+    },
+    "previous_event_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "event_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
     },
     "extensions": {
       "type": "object",

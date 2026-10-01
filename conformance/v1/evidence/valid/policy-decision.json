@@ -1,0 +1,18 @@
+{
+  "event": {
+    "id": "evt-conformance-001",
+    "event": "Policy decision: ALLOW",
+    "protocol_version": "0.1",
+    "event_type": "POLICY_DECISION",
+    "timestamp": "2026-01-02T03:04:05Z",
+    "entity_id": "eid:entity:1",
+    "action_id": "act-conformance-001",
+    "policy_id": "policy-conformance-001",
+    "decision_id": "decision-conformance-001",
+    "decision": "ALLOW",
+    "request_id": "req-conformance-001",
+    "actor_entity_id": "eid:entity:1",
+    "event_hash": "dbb886f6fd3a94e83ea9fcbcdd316ff3de39925a6f7161cb23513febe2d1620c"
+  },
+  "expected_event_hash": "dbb886f6fd3a94e83ea9fcbcdd316ff3de39925a6f7161cb23513febe2d1620c"
+}

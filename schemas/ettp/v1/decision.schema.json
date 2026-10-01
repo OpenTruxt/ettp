@@ -29,6 +29,30 @@
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
       "description": "Optional identifier of the policy associated with the outcome."
     },
+    "policy_version": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+    },
+    "reason_code": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+    },
+    "matched_conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+      }
+    },
+    "failed_conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+      }
+    },
+    "request_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "timestamp": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Timestamp"
+    },
     "extensions": {
       "type": "object",
       "description": "Optional implementation-defined extension data. Extensions must not redefine ETTP protocol fields.",

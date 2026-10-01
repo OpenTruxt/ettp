@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/delegation.schema.json",
+  "title": "ETTP Delegation",
+  "description": "A delegated grant of authority with bounded depth and provenance.",
+  "type": "object",
+  "properties": {
+    "delegation_id": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "grantor": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "grantee": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "authority": {
+      "oneOf": [
+        { "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/authority.schema.json" },
+        { "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString" }
+      ]
+    },
+    "capabilities": {
+      "type": "array",
+      "items": { "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString" },
+      "uniqueItems": true
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "scope": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+    },
+    "issued_at": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Timestamp"
+    },
+    "expires_at": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Timestamp"
+    },
+    "parent_delegation": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "depth": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "REVOKED", "EXPIRED", "PENDING"]
+    },
+    "revocation_reference": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier"
+    },
+    "signature": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString"
+    },
+    "max_delegation_depth": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    }
+  },
+  "required": ["delegation_id", "grantor", "grantee", "authority", "capabilities", "constraints", "scope", "status"],
+  "additionalProperties": false
+}

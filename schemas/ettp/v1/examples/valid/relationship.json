@@ -1,0 +1,6 @@
+{
+  "source": "root-entity",
+  "relationship": "controls",
+  "target": "entity-1",
+  "metadata": {"strength": "strong"}
+}

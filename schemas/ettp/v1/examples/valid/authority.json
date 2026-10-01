@@ -1,0 +1,10 @@
+{
+  "id": "auth-1",
+  "action": "payment.refund",
+  "capabilities": ["refund"],
+  "constraints": {"max_amount": 1000},
+  "scope": "payment",
+  "grantor": "root-entity",
+  "grantee": "entity-1",
+  "issued_at": "2026-01-01T00:00:00Z"
+}

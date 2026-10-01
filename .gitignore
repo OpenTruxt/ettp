@@ -42,5 +42,9 @@ Thumbs.db
 .env.*
 !.env.example
 
+# Local ETTP runtime evidence and lifecycle state
+.ettp/
+
 agent.md
 code.md
+repo.md

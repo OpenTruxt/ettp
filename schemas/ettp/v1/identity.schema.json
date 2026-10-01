@@ -9,6 +9,10 @@
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
       "description": "A globally unique, stable, non-secret identifier that does not encode personal or vendor-specific data."
     },
+    "eid": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference",
+      "description": "Optional universal autonomous entity identifier; it must not encode secrets or unnecessary personal information."
+    },
     "version": {
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
       "description": "The version of this identity record."
@@ -49,10 +53,12 @@
     "status": {
       "type": "string",
       "enum": [
+        "PROPOSED",
         "ACTIVE",
         "SUSPENDED",
         "REVOKED",
-        "EXPIRED"
+        "EXPIRED",
+        "TERMINATED"
       ],
       "description": "The lifecycle status of the identity."
     },

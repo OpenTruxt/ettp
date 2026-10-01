@@ -9,6 +9,10 @@
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/Identifier",
       "description": "A globally unique, stable, non-secret entity identifier."
     },
+    "eid": {
+      "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/EntityReference",
+      "description": "Optional universal autonomous entity identifier; it must not encode secrets or unnecessary personal information."
+    },
     "type": {
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/NonEmptyString",
       "description": "An extensible entity type identifier; implementations must not assume the set is closed."
@@ -45,6 +49,11 @@
     "protocol_version": {
       "$ref": "https://github.com/OpenTruxt/ettp/schemas/ettp/v1/common.schema.json#/$defs/ProtocolVersion",
       "description": "The ETTP protocol version used by this entity representation."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PROPOSED", "ACTIVE", "SUSPENDED", "REVOKED", "EXPIRED", "TERMINATED"],
+      "description": "Lifecycle state; only ACTIVE entities may receive an ALLOW decision."
     },
     "extensions": {
       "type": "object",

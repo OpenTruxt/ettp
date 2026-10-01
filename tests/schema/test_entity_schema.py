@@ -7,6 +7,7 @@ import pytest
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import ValidationError
 
+from ettp import Entity
 from schema_support import make_validator
 
 SCHEMA_ROOT = Path("schemas/ettp/v1")
@@ -65,3 +66,19 @@ def test_entity_with_undeclared_protocol_field_fails() -> None:
 
     with pytest.raises(ValidationError):
         make_validator(schema).validate(instance)
+
+
+def test_python_entity_with_eid_and_lifecycle_status_matches_schema() -> None:
+    entity = Entity(
+        id="entity-1",
+        eid="eid:autonomous:1",
+        type="ROBOT",
+        name="robot",
+        version="1",
+        capabilities=[],
+        metadata={},
+        protocol_version="0.1",
+        status="SUSPENDED",
+    )
+
+    make_validator(load_json(SCHEMA_PATH)).validate(entity.model_dump(mode="json"))

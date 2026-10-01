@@ -1,0 +1,10 @@
+{
+  "id": "revoke-1",
+  "target_type": "delegation",
+  "target_id": "delegation-1",
+  "action": "REVOKE_DELEGATION",
+  "reason": "delegation cancelled",
+  "actor": "root-entity",
+  "issued_at": "2026-01-01T00:00:00Z",
+  "status": "ACTIVE"
+}
