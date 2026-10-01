@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import json
 import os
-from collections.abc import Iterable, Iterator
+from collections.abc import Callable, Iterable, Iterator
 from contextlib import contextmanager
 from pathlib import Path
 from threading import RLock
-from typing import Any
+from typing import Any, cast
 from uuid import uuid4
 
 from ettp.actions import Action, ActionContext
@@ -268,22 +268,34 @@ def _exclusive_file_lock(path: Path) -> Iterator[None]:
         if os.name == "nt":
             import msvcrt
 
+            msvcrt_locking = cast(
+                Callable[[int, int, int], None],
+                getattr(msvcrt, "locking"),  # noqa: B009
+            )
+            lock_block = cast(int, getattr(msvcrt, "LK_LOCK"))  # noqa: B009
+            unlock_block = cast(int, getattr(msvcrt, "LK_UNLCK"))  # noqa: B009
             handle.seek(0, os.SEEK_END)
             if handle.tell() == 0:
                 handle.write(b"0")
                 handle.flush()
             handle.seek(0)
-            msvcrt.locking(handle.fileno(), msvcrt.LK_LOCK, 1)
+            msvcrt_locking(handle.fileno(), lock_block, 1)
             try:
                 yield
             finally:
                 handle.seek(0)
-                msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+                msvcrt_locking(handle.fileno(), unlock_block, 1)
         else:
             import fcntl
 
-            fcntl.flock(handle.fileno(), fcntl.LOCK_EX)  # type: ignore[attr-defined]
+            fcntl_flock = cast(
+                Callable[[int, int], None],
+                getattr(fcntl, "flock"),  # noqa: B009
+            )
+            lock_exclusive = cast(int, getattr(fcntl, "LOCK_EX"))  # noqa: B009
+            lock_unlock = cast(int, getattr(fcntl, "LOCK_UN"))  # noqa: B009
+            fcntl_flock(handle.fileno(), lock_exclusive)
             try:
                 yield
             finally:
-                fcntl.flock(handle.fileno(), fcntl.LOCK_UN)  # type: ignore[attr-defined]
+                fcntl_flock(handle.fileno(), lock_unlock)
